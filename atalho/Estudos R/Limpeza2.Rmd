@@ -1,0 +1,59 @@
+Minha 1° limpeza
+
+```{r}
+dados = read.csv("C:/Users/steph/OneDrive/Documentos/R/tempo.csv", sep=";", na.strings = "", stringsAsFactors = T)
+head(dados)
+summary(dados)
+```
+Começando com a Aparencia
+
+```{r}
+count = table(dados$Aparencia)
+barplot(count, main="Aparencia", xlab="Aparencia")
+```
+```{r}
+
+unique(dados$Aparencia)
+summary(dados$Aparencia)
+
+dados[dados$Aparencia == "menos",]$Aparencia = "sol"
+
+summary(dados$Aparencia)
+
+dados$Aparencia = factor(dados$Aparencia)
+
+summary(dados$Aparencia)
+```
+Temperatura
+
+```{r}
+summary(dados$Temperatura)
+hist(dados$Temperatura)
+
+dados[dados$Temperatura > 130,]$Temperatura = median(dados$Temperatura)
+
+summary(dados$Temperatura)
+hist(dados$Temperatura)
+```
+Umidade
+
+```{r}
+summary(dados$Umidade)
+
+dados[is.na(dados$Umidade) | dados$Umidade > 100,]$Umidade = median(dados$Umidade, na.rm = T)
+summary(dados$Umidade)
+```
+Vento
+
+```{r}
+summary(dados$Vento)
+
+dados[is.na(dados$Vento), ]$Vento = "FALSO"
+
+summary(dados$Vento)
+```
+
+```{r}
+summary(dados)
+```
+

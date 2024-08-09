@@ -1,0 +1,54 @@
+Teste de normalidade
+-> formas de testar se os dados estão normalmente distribuídos
+```{r}
+set.seed(123) #gerar semente 
+```
+
+```{r}
+x = rnorm(1000) #aqui eu gero 1000 valores aleatórios, mas que tem uma distribuição normal
+```
+
+Aqui em baixo geramos o gráfico Q-Q Plot
+```{r}
+qqnorm(x)
+qqline(x)
+```
+
+Teste de Shapiro
+Valor de p acima de 0.05, não há indício para não confirmar a hipótese nula de dados normalmente distribuidos
+```{r}
+shapiro.test(x)
+```
+
+```{r}
+hist(x, main="")
+par(new=TRUE)
+plot(density(x), ylab = "", xlab = "", axes = F, lwd = 2.5)
+```
+
+Dados não normalmente distribuidos
+```{r}
+#rodar com Ctrl+shift+enter
+#install.packages("semTools")
+library(semTools)
+m = mvrnonnorm(1000, c(1, 2), matrix(c(10, 2, 2, 5), 2, 2),
+                 skewness = c(5, 2), kurtosis = c(3, 3))
+qqnorm(m)
+qqline(m)
+```
+
+```{r}
+shapiro.test(m)
+```
+```{r}
+hist(m, main="")
+par(new=TRUE)
+plot(density(m),ylab = "", xlab = "", axes=F, lwd=2.5 ) 
+```
+
+
+
+
+
+
+

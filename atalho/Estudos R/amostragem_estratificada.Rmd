@@ -1,0 +1,59 @@
+Amostragem Estratificada
+
+```{r}
+install.packages("sampling")
+library(sampling)
+```
+
+Proporção de cada estrato
+```{r}
+proporcao = 25
+```
+
+
+```{r}
+iris #temos 50 registros de cada espécie -> 3 espécies
+```
+
+com a proporção = 25, teremos 25 registros de cada espécie
+
+
+```{r}
+amostra_iris2 = strata(data= iris, stratanames = c("Species"), size= c(rep(proporcao, 3)), method = "srswor" )
+```
+"stratanames = c("Species")" -> vou usar a coluna Spécies como método de estratificação
+"size= c(rep(proporcao, 3))" -> tenho que passar um vetor para cada elemento do meu estrato, como temos 3 espécies, uso o a função rep para repetir 3 vezes -> cada espécie terá 25 representações
+"srswor" = amostra simples sem reposição, "srswr" = com reposição
+
+```{r}
+amostra_iris2
+```
+```{r}
+summary(amostra_iris2)
+```
+
+```{r}
+infert
+summary(infert)
+```
+
+```{r}
+amostra = strata(data=infert, stratanames = "education",size =c(5,48,47), method = "srswor")
+```
+"size =c(5,48,47)" -> um vetor com 3 parâmetros pois temos 3 elementos em education. -> 5 registros para 0-5, 48 para 6-11... e assim mudo a proporção de cada
+
+```{r}
+amostra
+summary(amostra)
+```
+
+
+
+
+
+
+
+
+
+
+

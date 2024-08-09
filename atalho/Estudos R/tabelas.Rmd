@@ -1,0 +1,26 @@
+Tabelas
+
+```{r}
+install.packages("stargazer") #este pacote gera tabelas de vários formatos
+library(stargazer)
+```
+Formato Latex -> o pacote gera nesse formato padrão se você não especificar nada
+```{r}
+stargazer(iris) #gera o código fonte, você pode jogar o código no site Latex para ter a tabela
+```
+Texto
+
+```{r}
+stargazer(iris, type = "text")
+```
+Salvar em disco
+
+```{r}
+stargazer(women, out = "women.tex", summary = FALSE) #com o summary = FALSE, não tenho a tabela com o resumo dos dados
+```
+HTML
+
+```{r}
+stargazer(iris, type = "html")
+```
+

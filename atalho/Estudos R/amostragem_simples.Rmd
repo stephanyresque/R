@@ -1,0 +1,86 @@
+Amostragem Simples
+
+```{r}
+amostra = sample(c(0,1), 150, replace = TRUE, prob = c(0.5,0.5))
+amostra
+summary(as.factor(amostra)) 
+```
+
+-> o 1° vetor nos mostra o universo da amostra, nos diz que será valores de 0 OU 1.
+-> 150 = quantos valores aleatórios ele vai gerar
+-> replace nos diz se será ou não com reposição, nesse caso será
+-> probabilidade de gerar cada um dos valores que foi informado, temos aqui prob. equivalentes (obs: como são equivalentes, eu poderia ter omitido esse parâmetro)
+
+```{r}
+amostra = sample(c(0,1), 150, replace = TRUE, prob = c(0.7,0.3))
+amostra
+summary(as.factor(amostra)) 
+```
+```{r}
+amostra = sample(c(1:1000), 150, replace = FALSE)
+amostra
+
+```
+
+-> aqui nosso vetor do universo nos fala que teremos valores de 1 a 1000
+-> aqui é sem reposição
+
+-----------------------------
+
+Gerando amostra de conjunto de dados reais
+gerar 30% dos dados de iris
+```{r}
+amostra = sample(c(0,1), 150, replace = TRUE, prob = c(0.7,0.3))
+summary(as.factor(amostra))
+```
+
+-> 1° vamos gerar um amostra, vale ressaltar que iris tem 150 instâncias
+-> quero separar 70% dos dados, por isso a prob.
+
+```{r}
+amostrairis = iris[amostra==1,] #assim eu separo 30% dos dados
+amostrairis
+```
+-> "iris[amostra==1,]" acesso as linhas de iris que coincidem com as amostra igual a 1
+-> eu percorro o vetor da amostra e quando o valor for 1 eu pego um dado de iris
+
+------------------------------
+Repetindo um experimento -> garantir que os dados sejam os mesmos e não outros valores aleatórios quando eu gerar novamente
+
+```{r}
+set.seed(2345) #gero uma semente aleatória -> o parâmetro é um valor inteiro qualquer
+sample(c(0:1000), 1)
+```
+-> para funcionar, devo executar o set.seed antes
+
+repetindo....
+```{r}
+set.seed(2345) 
+sample(c(0:1000), 1)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

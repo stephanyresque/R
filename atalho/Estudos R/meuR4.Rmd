@@ -1,0 +1,61 @@
+1° Sequência de exercícios; =)
+
+
+01 QUESTÃO
+```{r}
+ana = 12L
+paulo = 8L
+
+if(ana >= paulo)
+{
+  print("Ana é mais velha")
+}else
+{
+  print("Paulo é mais velho")
+}
+x = ifelse(paulo <= ana,"Paulo é mais novo","Ana é mais nova")
+x
+```
+02 QUESTÃO
+```{r}
+class(BOD)
+```
+03 QUESTÃO
+```{r}
+vet = c(1,2,3,4,5,6,7,8,9,10)
+
+for(i in vet)
+{
+  if(vet[i]%%2 == 0)
+  {
+    print(vet[i])
+  }
+    
+}
+```
+04 QUESTÃO
+```{r}
+women
+tail(women, n=10)
+```
+05 QUESTÃO
+```{r}
+iris
+x = iris[50:100, c(2,3)]
+plot(x)
+
+```
+06 QUESTÃO
+```{r}
+x = c(1,2,3,4)
+y = c(4,3,2,1)
+
+print(x + y)
+```
+07 QUESTÃO
+```{r}
+dim(CO2)
+colnames(CO2)
+rownames(CO2)
+```
+

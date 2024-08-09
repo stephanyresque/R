@@ -1,0 +1,30 @@
+Amostra sistemática
+
+```{r}
+install.packages("TeachingSampling")
+library(TeachingSampling)
+```
+amostra sist. de tamanho 150, de 10 grupos
+```{r}
+amostra = S.SY(150,10)
+amostra
+```
+-> inicia aleatóriamente em qualquer número e vai pulando de 10 em 10
+-> número máximo é 150
+
+```{r}
+amostra_iris = iris[amostra, ]
+amostra_iris
+```
+-> aqui vou selecionar as linhas que são coincidentes com a amostra
+
+
+```{r}
+
+```
+
+
+
+
+
+

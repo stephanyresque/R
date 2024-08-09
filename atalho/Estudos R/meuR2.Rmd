@@ -1,0 +1,24 @@
+
+Formas de importar dados =)
+```{r}
+install.packages("openxlsx")
+library(openxlsx)
+```
+texto
+
+```{r}
+x = read.csv(file.choose(),header = TRUE, sep = ",")
+x
+x = read.csv("Credit.csv",header = TRUE, sep = ",")
+x
+```
+Importanto Excel
+```{r}
+dados = read.xlsx("Credit.xlsx",sheet = 1)
+dados
+```
+
+```{r}
+print("teste")
+```
+

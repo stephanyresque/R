@@ -1,0 +1,71 @@
+Pacote Lattice
+
+```{r}
+#este pacote não precisa instalar, apenas carregar
+library(lattice)
+```
+
+Boxplot
+```{r}
+bwplot(trees$Volume, main = "Árvores", xlab = "Volume")
+```
+Histograma
+ -> aspect = proporção, nint = número de quebras, type = percent, count, density 
+```{r}
+histogram(trees$Volume, main = "Árvore", xlab = "Volume", aspect = 1, type = "percent", nint = 5)
+```
+Histograma condicional
+
+```{r}
+chickwts #peso de galinhas pelo alimento
+histogram(chickwts$weight)
+#no hist cond vou colocar uma condição para comparar cada peso
+aggregate(chickwts$weight, by=list(chickwts$feed), FUN=sum) #se quisermos agregar os dados
+
+histogram(~weight | feed, data = chickwts) #quero um hist do peso condicionado pelo feed dos dados do chickwts
+```
+Gráficos de dispersão condicional
+
+```{r}
+CO2
+xyplot(CO2$conc ~ CO2$uptake) #graf de disp do pacote lattice
+xyplot(CO2$conc ~ CO2$uptake | CO2$Type) #graf condicionado pelo type
+xyplot(CO2$conc ~ CO2$uptake | CO2$Treatment)
+```
+Outro tipo de gráfico que pode ser condicionado
+
+```{r}
+esoph
+dotplot(esoph$alcgp ~ esoph$ncontrols, data = esoph) #sem condicional
+dotplot(esoph$alcgp ~ esoph$ncontrols | esoph$tobgp) #com cond
+```
+
+Matriz de dispersão
+
+```{r}
+splom(~CO2[4:5] | CO2$Type, CO2) #usando as colunas 4 e 5 de CO2/condicionada pelo type/do conjunto de dados CO2 
+```
+Densidade condicional
+
+```{r}
+densityplot(~CO2$conc | CO2$Treatment, plot.points = FALSE)
+densityplot(CO2$conc)
+densityplot(~CO2$conc | CO2$Treatment)
+```
+Gráfico 3D
+
+```{r}
+OrchardSprays
+cloud(decrease ~ rowpos * colpos, data = OrchardSprays)
+cloud(decrease ~ rowpos * colpos, groups = treatment, data = OrchardSprays) #aqui mudei os pontos para serem de acordo com o tipo de spray usado
+
+```
+Level plot
+```{r}
+trees
+levelplot(Girth ~ Height * Volume, data = trees)
+
+
+```
+
+
