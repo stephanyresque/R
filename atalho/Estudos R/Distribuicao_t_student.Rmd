@@ -1,0 +1,19 @@
+
+Distribuição T student
+----------------------
+
+Salario de cientistas 75 por hora. Amostra 9. S=10 (desvio padrão da amostra). Qual a probabilidade de ser menor que 80 hora?
+t=1.5 -> graus de liberdade 8 
+```{r}
+pt(1.5, 8)
+```
+Qual a proabilidade de ser maior que 80
+```{r}
+pt(1.5, 8, lower.tail = FALSE)
+1 - pt(1.5, 8)
+#são a mesma coisa
+```
+```{r}
+pt(1.5, 8) + pt(1.5, 8, lower.tail = FALSE)
+```
+
