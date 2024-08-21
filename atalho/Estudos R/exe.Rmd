@@ -1,0 +1,42 @@
+Exercício
+
+```{r}
+dados = read.csv("C:/Users/steph/OneDrive/Documentos/dados-cd/slr12.csv", sep = ";")
+dados
+```
+
+```{r}
+library(corrgram)
+cor(dados)
+```
+```{r}
+corrgram(dados, order = TRUE, lower.panel=panel.shade,
+         upper.panel=panel.pie, text.panel=panel.txt,
+         main="Franquias")
+```
+```{r}
+modelo = lm(CusInic ~ FrqAnual, data = dados)
+modelo
+```
+
+```{r}
+plot(CusInic ~ FrqAnual, data = dados, ylab = "Investimento Inicial", xlab = "Taxa Anual", main = "Franquias")
+abline(modelo)
+```
+
+```{r}
+predict(modelo, data.frame(FrqAnual = 1300))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
