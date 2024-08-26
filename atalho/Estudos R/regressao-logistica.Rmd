@@ -1,0 +1,77 @@
+Regressão Logística
+
+Carregamento de dados
+```{r}
+dados = read.csv("C:/Users/steph/OneDrive/Documentos/dados-cd/Eleicao.csv", sep = ";", header = T)
+dados
+```
+Gráfico e visualização
+```{r}
+plot(dados$DESPESAS, dados$SITUACAO)
+summary(dados)
+```
+Correlação
+```{r}
+cor(dados$SITUACAO, dados$DESPESAS)
+```
+Modelo de Regressão Logística
+```{r}
+modelo = glm(SITUACAO ~ DESPESAS, data = dados, family = "binomial")
+summary(modelo)
+```
+Modelo comparado aos dados
+```{r}
+plot(dados$DESPESAS, dados$SITUACAO, col = "red", pch = 20)
+points(dados$DESPESAS, modelo$fitted, pch = 4)
+```
+Testar o modelo com os próprios candidatos
+```{r}
+prever = predict(modelo, newdata = dados, type = "response")
+prever = prever >= 0.5
+prever
+```
+Avaliar performance
+```{r}
+confusao = table(prever, dados$SITUACAO)
+confusao #matriz de confusão
+```
+```{r}
+taxaacerto = (confusao[1] + confusao[4]) / sum(confusao)
+taxaacerto
+```
+Novos candidatos
+```{r}
+dados2 = read.csv("C:/Users/steph/OneDrive/Documentos/dados-cd/NovosCandidatos.csv", sep = ";", header = T)
+dados2
+```
+Previsão
+```{r}
+dados2$RESULTADO = predict(modelo, newdata = dados2, type = "response")
+dados2$RESULTADO
+ 
+```
+
+```{r}
+dados2$RESULTADO >= 5
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
