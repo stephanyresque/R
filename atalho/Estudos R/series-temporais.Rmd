@@ -1,0 +1,90 @@
+Séries temporais
+
+```{r}
+install.packages("forecast")
+library(forecast)
+```
+Conhecendo os dados
+```{r}
+AirPassengers
+start(AirPassengers)
+end(AirPassengers)
+frequency(AirPassengers) #o ciclo dos dados se repetem a cada 12 intervalos
+#ou seja, a cada 12 mêses 
+```
+Gráficos
+```{r}
+plot(AirPassengers)
+plot(aggregate(AirPassengers))
+```
+1° temos a série temporal
+2° Espécie de suavização -> mostra a tendência
+
+
+Aqui conseguimos enxergar melhor a sazonalidade em um ano
+```{r}
+subst = window(AirPassengers, start = c(1960,1), end=c(1960,12))
+subst
+plot(subst)
+```
+
+Decomposição
+```{r}
+dec = decompose(AirPassengers)
+dec
+```
+
+```{r}
+attributes(dec)
+dec$seasonal
+```
+Analisando de forma gráfica
+```{r}
+plot(dec)
+plot(dec$x)
+plot(dec$seasonal)
+plot(dec$trend)
+plot(dec$random)
+```
+
+Suavização exponencial
+```{r}
+ets = ets(AirPassengers) #criei modelo
+ets
+```
+Previsão
+```{r}
+previsao = forecast(ets, h=12) #h é a frequencia -> quantos novos mêses quero prever
+plot(previsao)
+```
+
+Arima
+```{r}
+arima = auto.arima(AirPassengers)
+arima
+```
+
+Comparando AIC, AICc e BIC vemos que o Arima é um modelo melhor que ets
+
+Previsões
+```{r}
+previsao = forecast(arima, h=12)
+plot(previsao)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
