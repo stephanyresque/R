@@ -1,0 +1,56 @@
+Naive Bayes
+
+```{r}
+install.packages("e1071")
+library(e1071)
+```
+
+Dados
+```{r}
+credito = read.csv("C:/Users/steph/OneDrive/Documentos/dados-cd/Credit.csv")
+head(credito)
+
+dim(credito)
+```
+
+Transformamos a classe em fator
+```{r}
+credito$class = as.factor(credito$class) #requisito de NB
+
+```
+Separamos dados de treino e teste
+```{r}
+amostra = sample(2, 1000, replace = T, prob = c(0.7, 0.3))
+
+creditoTreino = credito[amostra ==1,]
+creditoTeste = credito[amostra == 2,]
+```
+Dimensões dos conjuntos
+```{r}
+dim(creditoTeste)
+dim(creditoTreino)
+```
+
+Criamos o modelo
+```{r}
+modelo <- naiveBayes(class ~., creditoTreino)
+modelo
+```
+Previsão
+```{r}
+previsao <- predict(modelo, creditoTeste)
+previsao
+```
+
+Matriz de Confusão
+```{r}
+confusao = table(creditoTeste$class, previsao)
+confusao
+
+taxaAcerto = ((confusao[1] + confusao[4]) / sum(confusao))
+taxaErro = ((confusao[2] + confusao[3]) / sum(confusao))
+
+taxaAcerto
+taxaErro
+```
+
