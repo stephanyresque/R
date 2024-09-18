@@ -1,0 +1,40 @@
+Árvores de Decisão para regressão
+
+```{r}
+install.packages("rpart") #para criar a árvore de decisão
+library(rpart)
+library(forecast)
+```
+Dados
+```{r}
+iris
+```
+
+Criamos o modelo prevendo Sepal.Length (prever o comprimento)
+```{r}
+modelo = rpart(Sepal.Length ~ Sepal.Width + Petal.Length + Petal.Width + Species, data = iris)
+
+modelo #árvore construída
+
+summary(modelo)
+```
+Visualização
+```{r}
+plot(modelo)
+text(modelo)
+```
+Previsão
+```{r}
+previsao = predict(modelo, iris)
+head(previsao)
+```
+Comparamos previsão com dados reais
+```{r}
+comparacao = cbind(previsao, iris$Sepal.Length, previsao - iris$Sepal.Length)
+head(comparacao)
+```
+Verificamos métricas de erro de nosso modelo
+```{r}
+accuracy(previsao, iris$Sepal.Length)
+```
+
