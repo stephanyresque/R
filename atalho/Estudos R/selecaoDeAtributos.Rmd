@@ -1,0 +1,47 @@
+Seleção de Atributos -> máquina de vetor de suporte
+
+```{r}
+install.packages("e1071")
+install.packages("randomForest")
+library(e1071)
+library(randomForest)
+```
+```{r}
+credito = read.csv("C:/Users/steph/OneDrive/Documentos/dados-cd/Credit.csv")
+credito$class = as.factor(credito$class)
+```
+
+Dividios os dados em treino e teste
+Definimos semente para ser possível repetir o experimento
+```{r}
+set.seed(234)
+amostra = sample(2,1000, replace = T, prob = c(0.7, 0.3))
+treino = credito[amostra == 1,]
+teste = credito[amostra == 2,]
+```
+Criamos um primeiro modelo com todos os atributos
+Avaliamos a acurácia
+```{r}
+modelo = svm(class ~.,treino)
+predicao = predict(modelo, teste)
+confusao = table(teste$class, predicao)
+acerto_taxa = ((confusao[1] + confusao[4]) / sum(confusao))
+acerto_taxa
+```
+Aplicamos um método de seleção de atributos
+```{r}
+importancia = randomForest(class ~., data = treino)
+col = importance(importancia)
+col
+varImpPlot(importancia)
+```
+Criamos um segundo modelo com as variáveis independentes mais importantes
+
+```{r}
+modelo = svm(class ~ credit_amount + age + duration + checking_status,treino)
+predicao = predict(modelo, teste)
+confusao = table(teste$class, predicao)
+acerto_taxa = ((confusao[1] + confusao[4]) / sum(confusao))
+acerto_taxa
+```
+
