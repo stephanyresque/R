@@ -1,0 +1,39 @@
+Aprendizado baseado em instância
+
+```{r}
+install.packages("class")
+library(class)
+```
+
+Iris
+```{r}
+head(iris)
+summary(iris)
+```
+Dividimos em treino e classificação
+```{r}
+amostra = sample(2, 150, replace = T, prob = c(0.7, 0.3))
+treino = iris[amostra ==1,]
+teste = iris[amostra ==2,]
+```
+Visualizamos as dimensões
+```{r}
+dim(treino)
+dim(teste)
+```
+Fazemos a classificação sem criar modelo
+Dados de treino (instâncias), dados de teste, classe real, número de vizinhos considerados
+```{r}
+previsao = knn(treino[,1:4], teste[,1:4], treino[,5], k=3)
+previsao
+```
+Matriz de confusão
+```{r}
+tabela = table(teste[,5], previsao)
+tabela
+```
+Avaliamos a performance
+```{r}
+(tabela[1] + tabela[5] + tabela[9]) / sum(tabela)
+```
+
