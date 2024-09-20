@@ -1,0 +1,34 @@
+Ensamble Learning
+
+```{r}
+library(randomForest)
+credito = read.csv("C:/Users/steph/OneDrive/Documentos/dados-cd/Credit.csv")
+#transforma classe em fator
+credito$class = as.factor(credito$class)
+head(credito)
+```
+Separa dados de treino e teste
+```{r}
+amostra = sample(2, 1000, replace = T, prob = c(0.7, 0.3))
+treino = credito[amostra == 1,]
+teste = credito[amostra ==2,]
+```
+Gera o modelo
+```{r}
+floresta = randomForest(class ~., data = treino, ntree = 100, importance = T)
+floresta
+plot(floresta)
+```
+Previsão
+```{r}
+previsao = predict(floresta, teste)
+previsao
+confusao = table(previsao, teste$class)
+confusao
+```
+Avaliação de Performance
+```{r}
+(confusao[1] + confusao[4]) / sum(confusao)
+```
+
+
