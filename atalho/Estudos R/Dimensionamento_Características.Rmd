@@ -1,0 +1,31 @@
+Dimensionamento de Características
+
+```{r}
+iris
+```
+Padronização
+```{r}
+iris_pad = scale(iris[,1:4])
+iris_pad
+```
+
+Função para Normalização
+```{r}
+normaliza = function(x){
+  return( (x-min(x))/(max(x) - min(x)) )
+}
+```
+
+Aplica normalização
+```{r}
+iris_norm = normaliza(iris[,1:4])
+iris_norm
+```
+
+Compara os dois modelos
+```{r}
+boxplot(iris[,1:4], main= "Dados Originais")
+boxplot(iris_pad, main= "Padronizados")
+boxplot(iris_norm, main = "Normalizados")
+```
+
